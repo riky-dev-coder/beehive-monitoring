@@ -58,11 +58,8 @@ app = FastAPI(
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",           # Frontend en desarrollo (Vite)
-        "https://beehive-monitoring.vercel.app"    # Reemplazar con tu URL real de Vercel
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],  # temporal para pruebas
+    allow_credentials=False,  # debe ser False cuando allow_origins=["*"]
     allow_methods=["*"],
     allow_headers=["*"],
 )
