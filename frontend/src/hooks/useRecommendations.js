@@ -8,7 +8,7 @@ export const useRecommendations = () => {
   const generateRecommendation = async (context = '') => {
     setLoading(true);
     try {
-      const response = await api.post('/recommendations/', { context });
+      const response = await api.post('/recommendations', { context });
       setRecommendation(response.data.recommendation);
     } catch (error) {
       console.error('Error generating recommendation:', error);
