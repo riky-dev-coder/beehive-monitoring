@@ -60,7 +60,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",           # Frontend en desarrollo (Vite)
-        "https://Beehive-monitoring2026.vercel.app"    # Reemplazar con tu URL real de Vercel
+        "https://beehive-monitoring2026.vercel.app/"    # Reemplazar con tu URL real de Vercel
     ],
     allow_credentials=True,
     allow_methods=["*"],
