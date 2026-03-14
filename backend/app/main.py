@@ -55,14 +55,38 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Configurar CORS
+# Configurar CORS - Restringido a dominios de producción y desarrollo
+allowed_origins = [
+    "https://beehive-monitoring-production.up.railway.app",
+    "https://localhost:3000",  # Frontend local
+    "https://localhost:5173",  # Vite dev server
+    "http://localhost:3000",   # Frontend local (fallback)
+    "http://localhost:5173",   # Vite dev server (fallback)
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # temporal para pruebas
-    allow_credentials=False,  # debe ser False cuando allow_origins=["*"]
-    allow_methods=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# Middleware para headers de seguridad HTTPS
+@app.middleware("http")
+async def add_security_headers(request, call_next):
+    response = await call_next(request)
+    # HSTS (HTTP Strict Transport Security) - Fuerza HTTPS
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    # Prevenir clickjacking
+    response.headers["X-Frame-Options"] = "DENY"
+    # Prevenir MIME type sniffing
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    # Habilitar XSS protection
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    # Content Security Policy básica
+    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    return response
 
 # Incluir routers
 app.include_router(sensor_router)
