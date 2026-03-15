@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 const SEVERITY_STYLES = {
@@ -45,16 +45,18 @@ const AlertList = () => {
   const [filter, setFilter] = useState('all');
   const [markingId, setMarkingId] = useState(null);
 
-  const fetchAlerts = useCallback(async () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchAlerts = async () => {
     try {
+      console.log("API URL:", api.defaults.baseURL);
       const response = await api.get('/alerts');
       setAlerts(response.data);
     } catch (error) {
-      console.error('Error fetching alerts:', error);
+      console.error('No se pudieron obtener las alertas:', error);
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchAlerts();
@@ -116,7 +118,7 @@ const AlertList = () => {
         ))}
       </div>
 
-      {/* Lista */}
+      {/* Lista **/}
       {filteredAlerts.length === 0 ? (
         <div className="flex justify-center items-center h-40 text-gray-500">
           No hay alertas{filter !== 'all' ? ' en esta categoría' : ''}
@@ -133,7 +135,7 @@ const AlertList = () => {
               }`}
             >
               <div className="flex justify-between items-start gap-4">
-                {/* Contenido */}
+                {/* Contenido **/}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <span
@@ -156,7 +158,7 @@ const AlertList = () => {
                   <p className="text-sm text-gray-400 mt-1">{alert.mensaje}</p>
                 </div>
 
-                {/* Botón marcar como vista */}
+                {/* Botón marcar como vista **/}
                 {!alert.leida && (
                   <button
                     onClick={() => handleMarkAsRead(alert.id)}
@@ -173,6 +175,7 @@ const AlertList = () => {
       )}
     </div>
   );
-};
+
+  };
 
 export default AlertList;

@@ -323,5 +323,5 @@ Una vez HTTPS esté funcionando localmente:
 
 - [mkcert Documentation](https://github.com/FiloSottile/mkcert)
 - [OpenSSL Docs](https://www.openssl.org/docs/)
-- [Nginx SSL Configuration](http://nginx.org/en/docs/http/ngx_http_ssl_module.html)
+- [Nginx SSL Configuration](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)
 - [MDN: HTTPS](https://developer.mozilla.org/en-US/docs/Glossary/HTTPS)

@@ -57,13 +57,12 @@ app = FastAPI(
 )
 
 # Configurar CORS - Restringido a dominios de producción y desarrollo
-"""allowed_origins = [
+allowed_origins = [
     "https://beekiping-monitoring2026.web.app",
-    "https://localhost:3000",  # Frontend local
-    "https://localhost:5173",  # Vite dev server
-    "http://localhost:3000",   # Frontend local (fallback)
-    "http://localhost:5173",   # Vite dev server (fallback)
-]"""
+    "https://boris-sulfurous-stephine.ngrok-free.dev",
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
 """origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -72,7 +71,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
