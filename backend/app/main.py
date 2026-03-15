@@ -59,7 +59,7 @@ app = FastAPI(
 
 # Configurar CORS - Restringido a dominios de producción y desarrollo
 allowed_origins = [
-    "https://beehive-monitoring-production.up.railway.app",
+    "https://beekiping-monitoring2026.web.app",
     "https://localhost:3000",  # Frontend local
     "https://localhost:5173",  # Vite dev server
     "http://localhost:3000",   # Frontend local (fallback)
