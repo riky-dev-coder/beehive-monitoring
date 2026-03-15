@@ -22,7 +22,7 @@ router = APIRouter(prefix="/recommendations", tags=["recommendations"])
 
 # ── GET /recommendations/ ────────────────────────────────────────────────────
 
-@router.get("/", response_model=List[dict])
+@router.get("/history", response_model=List[dict])
 async def list_recommendations(
     estado: Optional[str] = Query(None, description="Filtrar por estado: pendiente | aceptada | rechazada"),
     limit:  int           = Query(50, le=200),

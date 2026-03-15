@@ -17,7 +17,7 @@ const RecommendationList = () => {
   const fetchRecommendations = useCallback(async () => {
     try {
       const params = filter ? { estado: filter } : {};
-      const { data } = await api.get('/recommendations', { params });
+      const { data } = await api.get('/recommendations/history', { params });
       setRecommendations(data);
     } catch (err) {
       console.error('Error al obtener recomendaciones:', err);

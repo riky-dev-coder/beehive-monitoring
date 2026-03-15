@@ -49,7 +49,7 @@ const AlertList = () => {
   const fetchAlerts = async () => {
     try {
       console.log("API URL:", api.defaults.baseURL);
-      const response = await api.get('/alerts');
+      const response = await api.get('/alerts/history');
       setAlerts(response.data);
     } catch (error) {
       console.error('No se pudieron obtener las alertas:', error);

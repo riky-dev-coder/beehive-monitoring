@@ -7,7 +7,7 @@ export const useAlerts = (activeOnly = false) => {
 
   const fetchAlerts = async () => {
     try {
-      const response = await api.get('/alerts', {
+      const response = await api.get('/alerts/history', {
         params: { active_only: activeOnly }
       });
       setAlerts(response.data);
