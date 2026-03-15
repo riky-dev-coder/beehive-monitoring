@@ -77,7 +77,7 @@ async def chat_with_beekeeper_ai(
     }
 
     payload = {
-        "model": "meta-llama/llama-3.1-8b-instruct",
+        "model": "deepseek/deepseek-v3.2",
         "messages": [
             {"role": "system", "content": _CHAT_SYSTEM_PROMPT},
             *messages,
@@ -128,7 +128,7 @@ async def generate_recommendation_from_alerts(
     }
 
     payload = {
-        "model": "meta-llama/llama-3.1-8b-instruct",
+        "model": "deepseek/deepseek-v3.2",
         "messages": [
             {
                 "role": "system",

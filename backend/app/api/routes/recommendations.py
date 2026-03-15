@@ -84,16 +84,16 @@ async def add_beekeeper_comment(rec_id: int, body: RecommendationCommentUpdate):
 async def beekeeper_chat(body: ChatRequest):
     """
     Chat conversacional con el asistente apícola IA.
-    body: {
-        "message": "pregunta del apicultor",
-        "history": [{ "role": "user"|"assistant", "content": "..." }, ...]
-    }
     """
     try:
+        # 🔧 Convertir ChatMessage Pydantic a dict antes de pasar al chat
+        history_dicts = [msg.model_dump() for msg in body.history]
+        
         response = await chat_with_beekeeper_ai(
             message=body.message,
-            history=body.history,
+            history=history_dicts,  # ✅ Ahora son diccionarios
         )
         return ChatResponse(response=response)
     except Exception as e:
+        logger.exception("Error en beekeeper_chat")
         raise HTTPException(status_code=500, detail=str(e))

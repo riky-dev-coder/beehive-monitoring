@@ -52,7 +52,9 @@ app = FastAPI(
     title="Beehive Monitoring API",
     description="API para monitoreo de colmenas con sensores de peso, temperatura y humedad",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
 # Configurar CORS - Restringido a dominios de producción y desarrollo
