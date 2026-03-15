@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.proxy_headers import ProxyHeadersMiddleware
 from contextlib import asynccontextmanager
 import logging
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -56,7 +57,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
-
+app.add_middleware(ProxyHeadersMiddleware)
 # Configurar CORS - Restringido a dominios de producción y desarrollo
 allowed_origins = [
     "https://beekiping-monitoring2026.web.app",
