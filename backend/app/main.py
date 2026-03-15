@@ -76,7 +76,7 @@ app.add_middleware(
 )
 
 # Middleware para headers de seguridad HTTPS
-@app.middleware("https")
+@app.middleware("http")
 async def add_security_headers(request, call_next):
     response = await call_next(request)
     # HSTS (HTTP Strict Transport Security) - Fuerza HTTPS
