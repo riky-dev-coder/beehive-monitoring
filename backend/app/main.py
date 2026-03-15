@@ -87,7 +87,7 @@ async def add_security_headers(request, call_next):
     # Habilitar XSS protection
     response.headers["X-XSS-Protection"] = "1; mode=block"
     # Content Security Policy básica
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    response.headers["Content-Security-Policy"] = "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'"
     return response
 
 # Incluir routers
