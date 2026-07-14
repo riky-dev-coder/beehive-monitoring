@@ -128,7 +128,7 @@ async def generate_recommendation_from_alerts(
     }
 
     payload = {
-        "model": "deepseek/deepseek-v3.2",
+        "model": "google/gemma-4-31b-it:free",
         "messages": [
             {
                 "role": "system",
