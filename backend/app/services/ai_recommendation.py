@@ -128,7 +128,7 @@ async def generate_recommendation_from_alerts(
     }
 
     payload = {
-        "model": "google/gemma-4-31b-it:free",
+        "model": "openai/gpt-oss-20b:free",
         "messages": [
             {
                 "role": "system",
